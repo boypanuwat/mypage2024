@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือติดตั้ง Appium บน macOS แบบ Interactive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .container {
+            max-width: 960px; /* Adjusted to match index.html's main content width */
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-xl */
+            border: 1px solid #e2e8f0; /* border-slate-200 */
+        }
+        .code-block {
+            position: relative;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .code-block pre {
+            background-color: #1e293b; /* slate-800 */
+            color: white;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background-color: #475569; /* slate-600 */
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .copy-btn:hover {
+            background-color: #334155; /* slate-700 */
+        }
+        .copy-btn.copied {
+            background-color: #16a34a; /* green-600 */
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #0891b2;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #0e7490;
+        }
+        /* Styles for Appium specific layout */
+        .sidebar-link.active {
+            background-color: #0891b2;
+            color: white;
+            font-weight: 700;
+        }
+        .sidebar-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .accordion-header {
+            cursor: pointer;
+        }
+        .accordion-icon {
+            transition: transform 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Appium Guide Content -->
+    <div class="container mx-auto max-w-7xl px-4 py-8 md:py-12">
+        <header class="text-center mb-10 md:mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-cyan-700">คู่มือติดตั้ง Appium บน macOS</h1>
+            <p class="mt-4 text-lg text-slate-600">คู่มือแบบ Interactive ที่จะช่วยให้คุณติดตั้งและตั้งค่า Environment
+                ได้อย่างง่ายดาย</p>
+        </header>
+
+        <div class="flex flex-col md:flex-row md:space-x-8">
+            
+            <aside class="md:w-1/4 mb-8 md:mb-0 md:sticky md:top-8 self-start">
+                <nav class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-lg mb-4">ขั้นตอนการติดตั้ง</h3>
+                    <ol id="sidebar-nav" class="space-y-2">
+                        <li><a href="#step-1" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">1. ติดตั้ง
+                                Node.js</a></li>
+                        <li><a href="#step-2" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">2. ติดตั้ง
+                                Appium Doctor</a></li>
+                        <li><a href="#step-3" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">3. ติดตั้ง
+                                JDK</a></li>
+                        <li><a href="#step-4" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">4. ติดตั้ง
+                                Homebrew</a></li>
+                        <li><a href="#step-5" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">5. รัน Appium
+                                Doctor</a></li>
+                        <li><a href="#step-6" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">6. ติดตั้ง
+                                Android Studio</a></li>
+                        <li><a href="#step-7" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">7. ติดตั้ง
+                                Xcode</a></li>
+                        <li><a href="#step-8" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">8. ติดตั้ง
+                                Appium</a></li>
+                        <li><a href="#step-9" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">9. ติดตั้ง
+                                Appium Inspector</a></li>
+                        <li><a href="#step-10" class="sidebar-link block p-3 rounded-md hover:bg-cyan-50">🔧 Tips &
+                                ปัญหาที่พบบ่อย</a></li>
+                    </ol>
+                </nav>
+            </aside>
+
+            <main class="md:w-3/4">
+                <div class="space-y-4" id="accordion-container">
+
+                    <div id="step-1" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>1. ติดตั้ง Node.js</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">Node.js เป็น Runtime Environment พื้นฐานที่ Appium ต้องการในการทำงาน</p>
+                                <ul class="list-disc list-inside space-y-2 mb-4">
+                                    <li><strong>ดาวน์โหลด:</strong> ไปที่เว็บไซต์ทางการ <a href="https://nodejs.org/"
+                                            target="_blank" class="text-cyan-600 hover:underline">nodejs.org</a>
+                                        และติดตั้งเวอร์ชัน LTS</li>
+                                    <li><strong>ตรวจสอบการติดตั้ง:</strong> เปิด Terminal และรันคำสั่งนี้</li>
+                                </ul>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>node -v</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-2" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>2. ติดตั้ง Appium Doctor</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">เครื่องมือสำหรับตรวจสอบว่าสภาพแวดล้อม (Environment) ของคุณพร้อมสำหรับ
+                                    Appium หรือไม่</p>
+                                <p class="mb-2"><strong>ติดตั้ง:</strong></p>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>npm install @appium/doctor -g</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                                <p class="mt-4 mb-2"><strong>ตรวจสอบเวอร์ชัน:</strong></p>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>appium-doctor --version</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-3" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>3. ติดตั้ง Java Development Kit (JDK)</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">จำเป็นสำหรับการพัฒนาและทดสอบแอปพลิเคชัน Android</p>
+                                <ul class="list-disc list-inside space-y-3 mb-4">
+                                    <li><strong>ดาวน์โหลด JDK 8:</strong> แนะนำจาก <a
+                                            href="https://www.openlogic.com/openjdk-downloads" target="_blank"
+                                            class="text-cyan-600 hover:underline">OpenLogic JDK 8 for Mac</a>.</li>
+                                    <li><strong>ตั้งค่า Environment Variable:</strong> สร้างหรือแก้ไขไฟล์
+                                        <code>~/.zprofile</code> และเพิ่มบรรทัดต่อไปนี้
+                                    </li>
+                                </ul>
+                                <div class="code-block mb-4">
+                                    <pre class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code># Java
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/openlogic-openjdk-8.jdk/Contents/Home"
+export PATH=$JAVA_HOME/bin:$PATH</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                                <p class="mb-2"><strong>โหลด Path ใหม่:</strong> รันคำสั่งนี้เพื่อให้การตั้งค่ามีผล</p>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>source ~/.zprofile</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-4" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>4. ติดตั้ง Homebrew</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">Package Manager สำหรับ macOS ที่ช่วยให้การติดตั้งโปรแกรมต่างๆ ง่ายขึ้น
+                                    (หากยังไม่มี)</p>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-5" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>5. รัน Appium Doctor (อีกครั้ง)</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">เพื่อตรวจสอบสถานะของ Environment หลังจากติดตั้ง Dependency เพิ่มเติม
+                                    และดูว่ามีอะไรที่ยังขาดไป</p>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>appium-doctor</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-6" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>6. ติดตั้ง Android Studio</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">IDE สำหรับพัฒนา Android พร้อม Android SDK ที่จำเป็น</p>
+                                <ul class="list-disc list-inside space-y-3 mb-4">
+                                    <li><strong>ดาวน์โหลด:</strong> จาก <a
+                                            href="https://developer.android.com/studio#downloads" target="_blank"
+                                            class="text-cyan-600 hover:underline">developer.android.com/studio</a>.</li>
+                                    <li><strong>ติดตั้งเพิ่มเติมใน Android Studio:</strong> ไปที่ SDK Manager และติดตั้ง
+                                        Android SDK Platform-Tools, Command-line Tools, และ Build-Tools.</li>
+                                    <li><strong>ตั้งค่า Environment Variable:</strong> แก้ไขไฟล์
+                                        <code>~/.zprofile</code> และเพิ่มบรรทัดต่อไปนี้
+                                    </li>
+                                </ul>
+                                <div class="code-block mb-4">
+                                    <pre class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code># Android SDK
+export ANDROID_HOME="/Users/admin/Library/Android/sdk"
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                                <p class="mb-2"><strong>จากนั้นโหลด Path ใหม่:</strong></p>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>source ~/.zprofile</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-7" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>7. ติดตั้ง Xcode</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">IDE ของ Apple จำเป็นสำหรับการพัฒนาและทดสอบแอปพลิเคชัน iOS</p>
+                                <ul class="list-disc list-inside space-y-3 mb-4">
+                                    <li><strong>ดาวน์โหลด:</strong> จาก App Store บน Mac ของคุณ</li>
+                                    <li><strong>ติดตั้ง Command Line Tools:</strong> หลังจากติดตั้ง Xcode เสร็จแล้ว
+                                        ให้รันคำสั่งนี้ใน Terminal</li>
+                                </ul>
+                                <div class="code-block">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>xcode-select --install</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-8" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>8. ติดตั้ง Appium</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p class="mb-4">ติดตั้ง Appium Core ผ่าน npm</p>
+                                <p class="mb-2"><strong>คำสั่งติดตั้ง:</strong></p>
+                                <div class="code-block mb-4">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>npm install --location=global appium</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                                <p class="mb-2">หากติด `permission denied` ลองใช้ `sudo`:</p>
+                                <div class="code-block mb-4">
+                                    <pre
+                                        class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>sudo npm install -g appium</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                                <p class="mb-2">หากมีปัญหา Cache ลองใช้คำสั่งเหล่านี้:</p>
+                                <div class="code-block">
+                                    <pre class="bg-slate-800 text-white p-4 rounded-md overflow-x-auto"><code>npm cache clean --force
+npm cache verify
+npm update</code></pre>
+                                    <button class="copy-btn">คัดลอก</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-9" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>9. ติดตั้ง Appium Inspector</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <p>เครื่องมือ GUI ที่ช่วยให้คุณสามารถตรวจสอบองค์ประกอบ (Elements) ของแอปพลิเคชัน
+                                    ทำให้การเขียนสคริปต์ทดสอบง่ายขึ้นมาก (แนะนำให้ติดตั้ง)</p>
+                                <a href="https://github.com/appium/appium-inspector/releases" target="_blank"
+                                    class="mt-4 inline-block bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-cyan-700 transition">
+                                    ดาวน์โหลด Appium Inspector
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="step-10" class="step-section">
+                        <div
+                            class="accordion-item bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+                            <button
+                                class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 transition">
+                                <span>🔧 Tips และแนวทางแก้ไขปัญหา</span>
+                                <span
+                                    class="accordion-icon text-cyan-600 text-2xl transform transition-transform">▸</span>
+                            </button>
+                            <div class="accordion-content hidden p-5 border-t border-slate-200">
+                                <ul class="list-disc list-inside space-y-3">
+                                    <li><strong>`sudo`</strong>: ใช้เมื่อเจอข้อผิดพลาด `permission denied` ในคำสั่ง
+                                        `npm` บน Mac</li>
+                                    <li><strong>`source ~/.zprofile`</strong>: ต้องรันคำสั่งนี้ทุกครั้งหลังแก้ไขไฟล์
+                                        `.zprofile` เพื่อให้การเปลี่ยนแปลงมีผลทันทีใน Terminal session ปัจจุบัน</li>
+                                    <li><strong>ตรวจสอบ Path</strong>: ตรวจสอบให้แน่ใจว่า Path ของ `JAVA_HOME` และ
+                                        `ANDROID_HOME` ถูกต้องตรงกับตำแหน่งที่ติดตั้งจริงเสมอ</li>
+                                    <li><strong>`appium-doctor`</strong>: ใช้เป็นประจำเพื่อตรวจสอบสถานะของ Environment
+                                        มันจะบอกได้ดีที่สุดว่าคุณยังขาดอะไรไปบ้าง</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Accordion Logic
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+                
+                content.classList.toggle('hidden');
+                if (content.classList.contains('hidden')) {
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    icon.style.transform = 'rotate(90deg)';
+                }
+            });
+        });
+
+        // Copy to Clipboard Logic
+        const copyButtons = document.querySelectorAll('.copy-btn');
+        copyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const codeBlock = button.previousElementSibling;
+                const code = codeBlock.querySelector('code').innerText;
+                
+                navigator.clipboard.writeText(code).then(() => {
+                    button.innerText = 'คัดลอกแล้ว!';
+                    button.classList.add('copied');
+                    setTimeout(() => {
+                        button.innerText = 'คัดลอก';
+                        button.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            });
+        });
+        
+        // Sidebar Navigation Click Logic
+        const navLinks = document.querySelectorAll('.sidebar-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent default scroll behavior
+                
+                // Remove active class from all links
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                // Add active class to the clicked link
+                this.classList.add('active');
+
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    // Scroll to the target section
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                    // Find the accordion header within the target section
+                    const accordionHeader = targetSection.querySelector('.accordion-header');
+                    const accordionContent = targetSection.querySelector('.accordion-content');
+                    const accordionIcon = targetSection.querySelector('.accordion-icon');
+
+                    // If the accordion content is hidden, click the header to expand it
+                    if (accordionContent && accordionContent.classList.contains('hidden')) {
+                        accordionHeader.click();
+                    }
+                }
+            });
+        });
+
+        // Removed the DOMContentLoaded listener and auto-open logic from here.
+        // This will now be handled by initializeDynamicContentScripts in index.html.
+    </script>
+</body>
+</html>
