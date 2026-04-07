@@ -1,32 +1,87 @@
 // Profile Content
-const profileContent = `## **ภาพรวมทักษะและประสบการณ์**
+const profileContent = `# Phanuwat Chaisri - QA Engineer
 
-ในฐานะผู้เชี่ยวชาญด้าน QA ผมมีประสบการณ์และทักษะที่หลากหลายในการรับรองคุณภาพของซอฟต์แวร์ ทั้งในส่วนของ Web และ Mobile App Testing
+## 🔹 QA Summary
 
-### **สายงานและทักษะ**
+QA Engineer ที่มีประสบการณ์ครอบคลุมการทดสอบทั้ง Web และ Mobile Application  
+เชี่ยวชาญทั้ง Manual Testing และ Automation Testing พร้อมแนวคิดการทำงานแบบ Structured, Scalable และ Maintainable
 
-* ทำงานด้าน QA (Quality Assurance) และเชี่ยวชาญใน Web และ Mobile App Testing  
-* มีประสบการณ์ทั้ง Manual และ Automated Testing โดยเฉพาะเครื่องมือ:  
-  * Playwright (เชี่ยวชาญ, ใช้งานจริง, มีโครงสร้างที่ชัดเจน)  
-  * Appium (ใช้งาน JavaScript สำหรับ Mobile Testing)  
-  * SeleniumLibrary ใน Robot Framework (เคยใช้กับ Web)  
-  * Cypress (เคยใช้มาก่อน, สนใจเปลี่ยนมา Playwright)  
-* ใช้งานเครื่องมือในการจัดการ Test Case และ Test Report: GitLab, Sourcetree, Jenkins, Allure Report, Google Sheets (Automate Jira Report), Jira + AIO Test
+## 🔹 Technical Skills & Tools
 
-### **ลักษณะงานปัจจุบัน**
+### Automation Testing
 
-* ทำ QA ให้กับหลายโปรเจกต์ใน Urbanice App Ecosystem: Urbanice Resident App, Niti Urbanice App (นิติบุคคล), Living Mart (Marketplace ในแอป), URB Home Service Backoffice  
-* วางเทสเคสละเอียด มีการเขียน Test Steps, Expected Result, Test Data แบบโครงสร้างครบถ้วน  
-* กำลังสอนทีม QA ใหม่ (Junior QA) ให้ใช้ Playwright และ Appium
+- Playwright (ใช้งานจริง ออกแบบโครงสร้างเอง)
+- Appium (Mobile Testing ด้วย JavaScript)
+- Cypress (เคยมีประสบการณ์ และกำลังเปลี่ยนมาใช้ Playwright)
 
-### **วิธีการทำงาน**
+### Test Management & Tools
 
-* ช อบเขียน Test Script ที่มีโครงสร้างและรูปแบบที่เป็นมาตรฐาน: ใช้ JSON เก็บ Test Data และ Locators, ใช้ getByRole, locator แบบ Clean Code, ใส่ Comment ภาษาไทยเพื่อให้ทีมเข้าใจง่าย  
-* สนใจเรื่อง CI/CD Integration  
-* พยายามลด Resource เช่น หลีกเลี่ยง Emulator, ใช้ Real Device แทนในการเทส Mobile
+- Jira + AIO Test
+- GitLab, Sourcetree (Version Control)
 
-### **เป้าหมาย**
+## 🔹 Experience / Project Scope
 
-* ทำให้ทีม QA มี Productivity สูงขึ้น  
-* ทำ Automation ที่ใช้งานง่ายและ Maintain ง่าย  
-* ทำ Report ที่อ่านง่ายและเข้าใจง่ายสำหรับผู้บริหาร (ชอบ Google Sheets, Allure, Excel Exporter)`;
+ดูแล QA สำหรับหลายโปรเจกต์ใน Urbanice Ecosystem:
+- Urbanice Resident App
+- Niti Urbanice (ระบบนิติบุคคล)
+- Living Mart (Marketplace)
+- URB Home Service Backoffice
+
+### Responsibilities
+
+- ออกแบบ Test Case แบบครบถ้วน:
+├─ Test Steps
+├─ Expected Results
+├─ Test Data (Structured)
+- ทดสอบระบบแบบ End-to-End ครอบคลุมหลายระบบ
+- ทำงานร่วมกับทีม Dev และ Product เพื่อยกระดับคุณภาพระบบ
+
+### Mentorship
+
+- สอน Junior QA:
+├─ Playwright (Automation Testing)
+├─ Appium (Mobile Testing)
+
+
+## 🔹 Working Style & Approach
+
+### Automation Design
+
+- ใช้ JSON แยก:
+├─ Test Data
+├─ Locators
+- ใช้ Playwright locator เช่น getByRole
+- เขียนโค้ดแบบ Clean Code:
+├─ อ่านง่าย
+├─ Maintain ง่าย
+- ใส่ Comment ภาษาไทยเพื่อให้ทีมเข้าใจง่าย
+
+### Engineering Mindset
+
+- สนใจและพัฒนาเรื่อง CI/CD Integration
+- สร้าง Automation Pipeline ให้รองรับการทำงานจริง
+
+### Optimization
+
+- ลด Resource ในการทดสอบ:
+├─ ใช้ Real Device แทน Emulator
+├─ ลดปัญหา Environment และเพิ่มความแม่นยำ
+
+## 🔹 Goals & Mindset
+
+- เพิ่ม Productivity ของทีม QA
+- สร้าง Automation ที่:
+├─ ใช้งานง่าย
+├─ Maintain ง่าย
+├─ รองรับการ Scale
+
+- พัฒนา Reporting ให้:
+├─ อ่านง่ายสำหรับ Dev / QA / Business
+  - ใช้ Playwright Report + Jira Dashboard + AIO
+
+## 🔹 Key Strengths
+
+- Automation-first mindset
+- Structured Test Design
+- Team Collaboration & Mentorship
+- Continuous Improvement (CI/CD + QA Process)`;
