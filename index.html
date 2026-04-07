@@ -1,563 +1,585 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phanuwat Chaisri - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phanuwat Chaisri - Software Tester</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Sarabun', sans-serif;
-            background-color: #f8fafc;
-            /* slate-50 */
-            color: #1e293b;
-            /* slate-800 */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 2rem;
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            /* rounded-lg */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            /* shadow-xl */
-            border: 1px solid #e2e8f0;
-            /* border-slate-200 */
-        }
-
-        .profile-img {
-            width: 240px;
-            height: 240px;
-            border-radius: 9999px;
-            /* rounded-full */
-            object-fit: cover;
-            margin: 0 auto 1.5rem;
-            border: 3px solid #34a6c3;
-            /* cyan-600 */
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 2.5rem;
-        }
-
-        h1 {
-            font-size: 5rem;
-            /* text-4xl */
-            font-weight: 700;
-            /* font-bold */
-            color: #0891b2;
-            /* cyan-700 */
-            margin-bottom: 0.5rem;
-        }
-
-        .title {
-            font-size: 2rem;
-            /* text-lg */
-            color: #0891b2;
-            /* slate-600 */
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .subtitle {
-            font-size: 1.125rem;
-            /* text-lg */
-            color: #475569;
-            /* slate-600 */
-            margin-bottom: 1.5rem;
-        }
-
-        .links {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
+            min-height: 100vh;
         }
 
-        .links a {
-            background-color: #0891b2;
-            /* cyan-600 */
-            color: white;
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            padding: 40px 0;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 0 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header .profile-section {
+            background: transparent;
+            border-radius: 0;
+            padding: 30px 20px 25px;
+            box-shadow: none;
+            margin-bottom: 0;
+            text-align: center;
+            border-bottom: none;
+        }
+
+        .sidebar-header .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 4px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar-header .profile-name {
+            font-size: 20px;
             font-weight: 600;
-            /* font-semibold */
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            /* rounded-lg */
-            text-decoration: none;
-            transition: background-color 0.2s, transform 0.2s;
+            color: #fff;
+            margin-bottom: 6px;
+            line-height: 1.3;
         }
 
-        .links a:hover {
-            background-color: #0e7490;
-            /* cyan-700 */
-            transform: translateY(-2px);
+        .sidebar-header .profile-role {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            margin-bottom: 0;
         }
 
-        /* Styles for the sidebar button-like links */
-        .sidebar-btn-link {
+        .sidebar-title {
+            color: #fff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-item {
+            margin: 5px 15px;
+        }
+
+        .menu-link {
             display: block;
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-            background-color: #f1f5f9;
-            /* slate-100 */
-            color: #334155;
-            /* slate-700 */
-            font-weight: 500;
-            /* medium */
+            padding: 14px 20px;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-            border: 1px solid #cbd5e1;
-            /* slate-300 */
-        }
-
-        .sidebar-btn-link:hover {
-            background-color: #e0f7fa;
-            /* cyan-50 */
-            color: #0891b2;
-            /* cyan-700 */
-            border-color: #0891b2;
-            /* cyan-600 */
-        }
-
-        .sidebar-btn-link.active {
-            /* Added active state for sidebar links */
-            background-color: #0891b2;
-            color: white;
-            font-weight: 700;
-            border-color: #0891b2;
-        }
-
-        .content-section {
-            background-color: #ffffff;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            /* shadow-sm */
-            border: 1px solid #e2e8f0;
-            /* border-slate-200 */
-        }
-
-        .code-block {
-            position: relative;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .code-block pre {
-            background-color: #1e293b;
-            /* slate-800 */
-            color: white;
-            padding: 1rem;
-            border-radius: 0.375rem;
-            overflow-x: auto;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background-color: #475569;
-            /* slate-600 */
-            color: white;
-            border: none;
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-size: 15px;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
 
-        .copy-btn:hover {
-            background-color: #334155;
-            /* slate-700 */
+        .menu-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateX(5px);
         }
 
-        .copy-btn.copied {
-            background-color: #16a34a;
-            /* green-600 */
+        .menu-link.active {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+            font-weight: 500;
         }
 
+        .menu-link.has-submenu {
+            position: relative;
+        }
+
+        .menu-link.has-submenu::after {
+            content: '▼';
+            position: absolute;
+            right: 20px;
+            font-size: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-link.has-submenu.open::after {
+            transform: rotate(180deg);
+        }
+
+        .submenu {
+            list-style: none;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .submenu.open {
+            max-height: 500px;
+        }
+
+        .submenu-item {
+            margin: 0;
+        }
+
+        .submenu-link {
+            display: block;
+            padding: 10px 20px 10px 50px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submenu-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+
+        .submenu-link.active {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            border-left: 3px solid #3498db;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            padding: 30px;
+            width: calc(100% - 280px);
+            min-height: 100vh;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 50px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            border: 5px solid #f0f0f0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-name {
+            font-size: 36px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .profile-role {
+            font-size: 20px;
+            color: #7f8c8d;
+            font-weight: 400;
+        }
+
+        /* Content Section */
+        .content-section {
+            background: #fff;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            min-height: calc(100vh - 100px);
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+
+        .content-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-section::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .content-section::-webkit-scrollbar-thumb {
+            background: #cbd5e0;
+            border-radius: 10px;
+        }
+
+        .content-section::-webkit-scrollbar-thumb:hover {
+            background: #a0aec0;
+        }
+
+        .content-wrapper {
+            opacity: 0;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content-section h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+        }
+
+        .content-section h2 {
+            color: #34495e;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .content-section h3 {
+            color: #485f7a;
+            font-size: 19px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-section p {
+            color: #5a6c7d;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .content-section ul,
+        .content-section ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: #5a6c7d;
+            line-height: 1.8;
+        }
+
+        .content-section li {
+            margin-bottom: 8px;
+        }
+
+        .content-section code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+
+        .content-section pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .content-section strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .content-section a {
+            color: #3498db;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .content-section a:hover {
+            border-bottom-color: #3498db;
+        }
+
+        /* Mobile Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-                /* Adjusted for mobile to avoid being too large */
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 20px 0;
             }
 
-            .title {
-                font-size: 1.5rem;
-                /* Adjusted for mobile */
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
             }
 
-            h2 {
-                font-size: 1.75rem;
-                /* text-2xl */
+            .profile-section {
+                padding: 30px 20px;
             }
 
-            .links {
-                flex-direction: column;
-                gap: 0.75rem;
+            .profile-name {
+                font-size: 28px;
             }
 
-            .links a {
-                width: 80%;
-                margin: 0 auto;
+            .profile-role {
+                font-size: 16px;
             }
+
+            .content-section {
+                padding: 25px;
+                max-height: none;
+            }
+
+            .content-section h1 {
+                font-size: 24px;
+            }
+
+            .menu-link {
+                font-size: 14px;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <header>
-            <img src="profile.jpg" alt="Profile Image" class="profile-img" />
-            <h1 class="title">Phanuwat Chaisri</h1>
-            <p class="subtitle">Software Tester | Automation | Tech Enthusiast</p>
-        </header>
-
-        <div class="flex flex-col md:flex-row md:space-x-8 mt-8">
-            <aside class="md:w-1/4 mb-8 md:mb-0 md:sticky md:top-8 self-start">
-                <nav class="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
-                    <h3 class="font-bold text-lg mb-4 text-cyan-700">หัวข้อหลัก</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#topic-1" class="sidebar-btn-link">1. ภาพรวมทักษะและประสบการณ์</a></li>
-                        <li><a href="appium.html" class="sidebar-btn-link">2. คู่มือติดตั้ง Appium</a></li>
-                        <li><a href="playwright.html" class="sidebar-btn-link">3. ขั้นตอนในการเริ่มใช้ Playwright</a>
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <!-- Profile Section -->
+                <section class="profile-section">
+                    <img src="profile.jpg" alt="Profile Image" class="profile-image" />
+                    <h1 class="profile-name">Phanuwat Chaisri</h1>
+                    <p class="profile-role">Software Tester</p>
+                </section>
+                <div class="sidebar-subtitle">QA Resources & Guides</div>
+            </div>
+            <ul class="menu">
+                <li class="menu-item">
+                    <a class="menu-link active" data-content="profile">Skills & Experience</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link has-submenu" id="ai-menu">AI Prompt</a>
+                    <ul class="submenu" id="ai-submenu">
+                        <li class="submenu-item">
+                            <a class="submenu-link" data-content="ai">Overview</a>
                         </li>
-                        <li><a href="#topic-4" class="sidebar-btn-link">4. AI และ Prompt Engineering สำหรับ QA</a></li>
-                        <li><a href="#topic-5" class="sidebar-btn-link">5. หัวข้อที่ 5</a></li>
+                        <li class="submenu-item">
+                            <a class="submenu-link" data-content="ai-prompt">Prompt Concept</a>
+                        </li>
+                        <li class="submenu-item">
+                            <a class="submenu-link" data-content="ai-testcase">Test Case Template</a>
+                        </li>
                     </ul>
-                </nav>
-            </aside>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" data-file="playwright.html">Playwright Guide</a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" data-file="appium.html">Appium Setup</a>
+                    
+                </li>
+            </ul>
+        </aside>
 
-            <main class="md:w-3/4">
-                <div id="dynamic-content-wrapper" class="space-y-6">
-                    <!-- Default welcome content -->
-                    <div id="welcome-section" class="content-section">
-                        <h2 class="text-2xl font-bold text-cyan-700 mb-3">ยินดีต้อนรับสู่ Portfolio ของฉัน!</h2>
-                        <p class="text-slate-700">สำรวจทักษะ ประสบการณ์ และผลงานของผมได้จากหัวข้อด้านซ้ายมือ</p>
-                        <p class="text-slate-700 mt-2">คุณสามารถดูคู่มือการติดตั้ง Appium และ Playwright
-                            หรือเรียนรู้เพิ่มเติมเกี่ยวกับ AI และ Prompt Engineering สำหรับงาน QA ได้</p>
-                    </div>
-
-                    <!-- 1. ภาพรวมทักษะและประสบการณ์ (Moved from old topic-3) -->
-                    <div id="topic-1" class="content-section hidden">
-                        <h2 class="text-2xl font-bold text-cyan-700 mb-3">ภาพรวมทักษะและประสบการณ์</h2>
-                        <p class="text-slate-700 mb-4">ในฐานะผู้เชี่ยวชาญด้าน QA
-                            ผมมีประสบการณ์และทักษะที่หลากหลายในการรับรองคุณภาพของซอฟต์แวร์ ทั้งในส่วนของ Web และ Mobile
-                            App Testing</p>
-
-                        <h3 class="text-xl font-semibold text-cyan-600 mb-2">สายงานและทักษะ</h3>
-                        <ul class="list-disc list-inside space-y-1 text-slate-700 mb-4">
-                            <li>ทำงานด้าน QA (Quality Assurance) และเชี่ยวชาญใน Web และ Mobile App Testing</li>
-                            <li>มีประสบการณ์ทั้ง Manual และ Automated Testing โดยเฉพาะเครื่องมือ:
-                                <ul class="list-circle list-inside ml-5 space-y-1">
-                                    <li>Playwright (เชี่ยวชาญ, ใช้งานจริง, มีโครงสร้างที่ชัดเจน)</li>
-                                    <li>Appium (ใช้งาน JavaScript สำหรับ Mobile Testing)</li>
-                                    <li>SeleniumLibrary ใน Robot Framework (เคยใช้กับ Web)</li>
-                                    <li>Cypress (เคยใช้มาก่อน, สนใจเปลี่ยนมา Playwright)</li>
-                                </ul>
-                            </li>
-                            <li>ใช้งานเครื่องมือในการจัดการ Test Case และ Test Report: GitLab, Sourcetree, Jenkins,
-                                Allure Report, Google Sheets (Automate Jira Report), Jira + AIO Test</li>
-                        </ul>
-
-                        <h3 class="text-xl font-semibold text-cyan-600 mb-2">ลักษณะงานปัจจุบัน</h3>
-                        <ul class="list-disc list-inside space-y-1 text-slate-700 mb-4">
-                            <li>ทำ QA ให้กับหลายโปรเจกต์ใน Urbanice App Ecosystem: Urbanice Resident App, Niti Urbanice
-                                App (นิติบุคคล), Living Mart (Marketplace ในแอป), URB Home Service Backoffice</li>
-                            <li>วางเทสเคสละเอียด มีการเขียน Test Steps, Expected Result, Test Data แบบโครงสร้างครบถ้วน
-                            </li>
-                            <li>กำลังสอนทีม QA ใหม่ (Junior QA) ให้ใช้ Playwright และ Appium</li>
-                        </ul>
-
-                        <h3 class="text-xl font-semibold text-cyan-600 mb-2">วิธีการทำงาน</h3>
-                        <ul class="list-disc list-inside space-y-1 text-slate-700 mb-4">
-                            <li>ชอบเขียน Test Script ที่มีโครงสร้างและรูปแบบที่เป็นมาตรฐาน: ใช้ JSON เก็บ Test Data และ
-                                Locators, ใช้ getByRole, locator แบบ Clean Code, ใส่ Comment
-                                ภาษาไทยเพื่อให้ทีมเข้าใจง่าย</li>
-                            <li>สนใจเรื่อง CI/CD Integration</li>
-                            <li>พยายามลด Resource เช่น หลีกเลี่ยง Emulator, ใช้ Real Device แทนในการเทส Mobile</li>
-                        </ul>
-
-                        <h3 class="text-xl font-semibold text-cyan-600 mb-2">เป้าหมาย</h3>
-                        <ul class="list-disc list-inside space-y-1 text-slate-700">
-                            <li>ทำให้ทีม QA มี Productivity สูงขึ้น</li>
-                            <li>ทำ Automation ที่ใช้งานง่ายและ Maintain ง่าย</li>
-                            <li>ทำ Report ที่อ่านง่ายและเข้าใจง่ายสำหรับผู้บริหาร (ชอบ Google Sheets, Allure, Excel
-                                Exporter)</li>
-                        </ul>
-                    </div>
-
-                    <!-- 2. Placeholder for old topic-2 content (now moved to topic-4) -->
-                    <div id="topic-2" class="content-section hidden">
-                        <h2 class="text-2xl font-bold text-cyan-700 mb-3">รายละเอียดหัวข้อที่ 2 (Placeholder)</h2>
-                        <p class="text-slate-700">เนื้อหาสำหรับหัวข้อที่ 2 จะปรากฏที่นี่
-                            คุณสามารถเพิ่มข้อมูลได้ตามต้องการ</p>
-                    </div>
-
-                    <!-- 3. Placeholder for old topic-3 content (now moved to topic-1) -->
-                    <div id="topic-3" class="content-section hidden">
-                        <h2 class="text-2xl font-bold text-cyan-700 mb-3">รายละเอียดหัวข้อที่ 3 (Placeholder)</h2>
-                        <p class="text-slate-700">เนื้อหาสำหรับหัวข้อที่ 3 จะปรากฏที่นี่
-                            คุณสามารถเพิ่มข้อมูลได้ตามต้องการ</p>
-                    </div>
-
-                    <!-- 4. AI และ Prompt Engineering สำหรับ QA (Moved from old topic-2) -->
-                    <div id="topic-4" class="content-section hidden">
-                        <h2 class="text-2xl font-bold text-cyan-700 mb-3">AI และ Prompt Engineering สำหรับงาน QA</h2>
-                        <p class="text-slate-700 mb-4">AI-enabled Employee หรือ AI-powered Assistant คือการใช้ AI มาช่วย
-                            "ทำงานแทน" หรือ "ช่วยงาน" พนักงาน เพื่อเพิ่มประสิทธิภาพ ลดเวลา และช่วยให้โฟกัสกับงานที่สำคัญ
-                        </p>
-
-                        <h3 class="text-xl font-semibold text-cyan-600 mb-2">AI สำหรับ Test Automation</h3>
-                        <ul class="list-disc list-inside space-y-1 text-slate-700 mb-4">
-                            <li><strong>Self-healing Test Scripts:</strong> AI ช่วยแนะนำหรือแก้ไข Locator
-                                โดยอัตโนมัติเมื่อ UI เปลี่ยน</li>
-                            <li><strong>AI-based Test Generation:</strong> AI สร้าง Test Case หรือ Automation Script
-                                เบื้องต้นจาก Requirement</li>
-                            <li><strong>AI Visual Testing:</strong> ตรวจจับความผิดปกติของ UI ด้วยการเปรียบเทียบภาพโดย AI
-                            </li>
-                            <li><strong>Predictive Testing:</strong> แนะนำ Feature ที่ควรโฟกัส Regression Test โดยอิงจาก
-                                Impact, Frequency, และ Historical Bug Data</li>
-                        </ul>
-
-                        <h3 class="text-xl font-semibold text-cyan-600 mb-2">AI สำหรับ Test Management</h3>
-                        <ul class="list-disc list-inside space-y-1 text-slate-700 mb-4">
-                            <li><strong>AI-powered Reporting:</strong> สรุปผลการทดสอบอัตโนมัติ สร้าง Test Summary Report
-                                ที่เข้าใจง่าย</li>
-                            <li><strong>Test Prioritization:</strong> แนะนำ Priority ของ Test Case ที่ควร Execute ก่อน
-                            </li>
-                            <li><strong>AI-based Defect Prediction:</strong> วิเคราะห์ Pattern ของ Defect
-                                เพื่อบอกจุดที่เสี่ยงจะเกิด Defect ซ้ำ</li>
-                        </ul>
-
-                        <h3 class="text-xl font-semibold text-cyan-600 mb-2">Prompt Engineering สำหรับงาน QA</h3>
-                        <p class="text-slate-700 mb-2">การใช้ Prompt ที่ดีกับ AI ช่วยให้ได้คำตอบที่แม่นยำ รวดเร็ว
-                            และตรงกับการทำงานของคุณ โดยมีโครงสร้างที่แนะนำคือ: ระบุเป้าหมาย (Goal), บอกบริบท (Context),
-                            ระบุรูปแบบผลลัพธ์ (Output Format), และใส่ตัวอย่าง/ข้อมูลอ้างอิง (Reference)</p>
-                        <p class="text-slate-700 font-semibold mb-2">ตัวอย่าง Prompt ที่ปรับใช้ได้:</p>
-                        <ul class="list-disc list-inside space-y-1 text-slate-700">
-                            <li><strong>เขียน Test Script:</strong> "ช่วยเขียน Playwright Automation Script ด้วย
-                                TypeScript สำหรับเทสการเพิ่มสินค้าลงตะกร้าบนเว็บ โดยใช้ getByRole, locator, และ json
-                                เก็บ test data ตามโครงสร้างที่ฉันเคยใช้ พร้อมเพิ่มคอมเมนต์ภาษาไทยในแต่ละขั้นตอน"</li>
-                            <li><strong>สร้าง Test Case:</strong> "ช่วยสร้าง Regression Test Cases ของฟีเจอร์
-                                [ชื่อฟีเจอร์] ใน Niti Urbanice App โดยเขียนในรูปแบบ Given-When-Then, ระบุ Priority, Test
-                                Steps, Test Data, และ Expected Results ด้วย"</li>
-                            <li><strong>จัดโครงสร้าง Report:</strong> "ช่วยออกแบบ Test Summary Report
-                                ที่เหมาะสำหรับสรุปผล Regression Test ใน Google Sheets โดยมีหัวข้อ Test Suite, Total Test
-                                Cases, Pass, Fail, Blocked, และ Recommendation ให้เหมาะสำหรับรายงานผู้บริหาร"</li>
-                            <li><strong>วาง Test Strategy:</strong> "ช่วยวาง Test Strategy สำหรับการทำ Automated Test
-                                ของ Living Mart Menu ใน Urbanice App โดยเน้นการ Run บน GitLab CI/CD, รองรับหลาย Browser
-                                และทำ Report ผ่าน Allure"</li>
-                        </ul>
-                    </div>
-
-                    <div id="topic-5" class="content-section hidden">
-                        <h2 class="text-2xl font-bold text-cyan-700 mb-3">รายละเอียดหัวข้อที่ 5</h2>
-                        <p class="text-slate-700">นี่คือส่วนสุดท้ายของหัวข้อตัวอย่าง</p>
-                    </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dynamic Content Section -->
+            <section class="content-section">
+                <div class="content-wrapper" id="content">
+                    <div class="loading">Loading...</div>
                 </div>
-            </main>
-        </div>
+            </section>
+        </main>
     </div>
+
+    <script src="content-ai.js"></script>
+    <script src="content-profile.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const dynamicContentWrapper = document.getElementById('dynamic-content-wrapper');
-            const sidebarLinks = document.querySelectorAll('.sidebar-btn-link');
-            // Get all content sections that are direct children of dynamicContentWrapper
-            // This ensures we don't accidentally hide/show content within loaded external HTML (like Appium's internal sections)
-            const internalContentSections = Array.from(dynamicContentWrapper.children).filter(child => child.classList.contains('content-section'));
+        const contentData = {
+            profile: profileContent,
+            ai: aiContent,
+            'ai-prompt': aiPromptContent,
+            'ai-testcase': aiPromptTestcase
+        };
 
-            // Function to initialize scripts for dynamically loaded content (copy buttons, accordions)
-            function initializeDynamicContentScripts() {
-                // Copy to Clipboard Logic
-                const copyButtons = dynamicContentWrapper.querySelectorAll('.copy-btn');
-                copyButtons.forEach(button => {
-                    if (!button.dataset.listenerAdded) { // Prevent adding multiple listeners
-                        button.addEventListener('click', function () {
-                            const codeBlock = this.previousElementSibling;
-                            const code = codeBlock.querySelector('code').innerText;
+        function parseMarkdown(text) {
+            let html = text;
 
-                            // Use document.execCommand('copy') for clipboard due to iframe restrictions
-                            try {
-                                const textarea = document.createElement('textarea');
-                                textarea.value = code;
-                                document.body.appendChild(textarea);
-                                textarea.select();
-                                document.execCommand('copy');
-                                document.body.removeChild(textarea);
+            // Headers
+            html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+            html = html.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+            html = html.replace(/^# (.*$)/gim, '<h1>$1</h1>');
 
-                                this.innerText = 'คัดลอกแล้ว!';
-                                this.classList.add('copied');
-                                setTimeout(() => {
-                                    this.innerText = 'คัดลอก';
-                                    this.classList.remove('copied');
-                                }, 2000);
-                            } catch (err) {
-                                console.error('Failed to copy: ', err);
-                                // Fallback for modern browsers (though execCommand is more reliable in iframes)
-                                // navigator.clipboard.writeText(code).then(() => { ... }).catch(...);
-                            }
-                        });
-                        button.dataset.listenerAdded = 'true';
-                    }
-                });
+            // Bold
+            html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
 
-                // Accordion Logic (relevant for appium.html content)
-                const accordionHeaders = dynamicContentWrapper.querySelectorAll('.accordion-header');
-                accordionHeaders.forEach(header => {
-                    if (!header.dataset.listenerAdded) { // Prevent adding multiple listeners
-                        header.addEventListener('click', function () {
-                            const content = this.nextElementSibling;
-                            const icon = this.querySelector('.accordion-icon');
+            // Links
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/gim, '<a href="$2" target="_blank">$1</a>');
 
-                            content.classList.toggle('hidden');
-                            if (content.classList.contains('hidden')) {
-                                icon.style.transform = 'rotate(0deg)';
-                            } else {
-                                icon.style.transform = 'rotate(90deg)';
-                            }
-                        });
-                        header.dataset.listenerAdded = 'true';
-                    }
-                });
+            // Code blocks
+            html = html.replace(/```([\s\S]*?)```/gim, '<pre>$1</pre>');
 
-                // Auto-open first accordion item if Appium content is loaded
-                // Check if the loaded content contains the specific structure of appium.html
-                // The loaded content from appium.html will have a a div with class 'flex flex-col md:flex-row md:space-x-8'
-                const appiumGuideSpecificContent = dynamicContentWrapper.querySelector('.flex.flex-col.md\\:flex-row.md\\:space-x-8');
-                if (appiumGuideSpecificContent) {
-                    const firstAccordionHeader = appiumGuideSpecificContent.querySelector('.accordion-item .accordion-header');
-                    if (firstAccordionHeader) {
-                        const firstAccordionContent = firstAccordionHeader.nextElementSibling;
-                        const firstAccordionIcon = firstAccordionHeader.querySelector('.accordion-icon');
+            // Inline code
+            html = html.replace(/`([^`]+)`/gim, '<code>$1</code>');
 
-                        if (firstAccordionContent && firstAccordionContent.classList.contains('hidden')) {
-                            firstAccordionContent.classList.remove('hidden');
-                            firstAccordionIcon.style.transform = 'rotate(90deg)';
-                        }
-                    }
-                }
+            // Line breaks
+            html = html.replace(/\n\n/g, '</p><p>');
+            html = html.replace(/\n/g, '<br>');
 
-                // Sidebar Navigation Click Logic for appium.html (if applicable, ensure it's re-attached)
-                const loadedSidebarNav = dynamicContentWrapper.querySelector('#sidebar-nav');
-                if (loadedSidebarNav) {
-                    const loadedNavLinks = loadedSidebarNav.querySelectorAll('.sidebar-link');
-                    loadedNavLinks.forEach(link => {
-                        if (!link.dataset.listenerAdded) {
-                            link.addEventListener('click', function (event) {
-                                event.preventDefault();
-                                loadedNavLinks.forEach(nav => nav.classList.remove('active'));
-                                this.classList.add('active');
+            // Unordered lists
+            html = html.replace(/^\* (.+)$/gim, '<li>$1</li>');
+            html = html.replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
 
-                                const targetId = this.getAttribute('href');
-                                // Find target section within the loaded content's main area
-                                const targetSection = dynamicContentWrapper.querySelector(targetId);
+            // Numbered lists
+            html = html.replace(/^\d+\. (.+)$/gim, '<li>$1</li>');
 
-                                if (targetSection) {
-                                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                    const accordionHeader = targetSection.querySelector('.accordion-header');
-                                    const accordionContent = targetSection.querySelector('.accordion-content');
-                                    const accordionIcon = targetSection.querySelector('.accordion-icon');
+            // Wrap in paragraphs
+            html = '<p>' + html + '</p>';
 
-                                    if (accordionContent && accordionContent.classList.contains('hidden')) {
-                                        accordionContent.classList.remove('hidden');
-                                        accordionIcon.style.transform = 'rotate(90deg)';
-                                    }
-                                }
-                            });
-                            link.dataset.listenerAdded = 'true';
-                        }
-                    });
-                }
-            }
+            // Clean up
+            html = html.replace(/<p><\/p>/g, '');
+            html = html.replace(/<p>(<h[1-6]>)/g, '$1');
+            html = html.replace(/(<\/h[1-6]>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<ul>)/g, '$1');
+            html = html.replace(/(<\/ul>)<\/p>/g, '$1');
+            html = html.replace(/<p>(<pre>)/g, '$1');
+            html = html.replace(/(<\/pre>)<\/p>/g, '$1');
 
-            // Sidebar Navigation Click Logic for showing/hiding content in main portfolio
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    const targetHref = this.getAttribute('href');
+            return html;
+        }
 
-                    // Remove active class from all sidebar links
-                    sidebarLinks.forEach(nav => nav.classList.remove('active'));
-                    // Add active class to the clicked link
-                    this.classList.add('active');
+        function loadContent(contentKey) {
+            const contentDiv = document.getElementById('content');
+            const rawContent = contentData[contentKey] || '<p>Content not found.</p>';
+            const htmlContent = parseMarkdown(rawContent);
 
-                    // Check if it's an internal link (starts with #)
-                    if (targetHref.startsWith('#')) {
-                        e.preventDefault(); // Prevent default scroll behavior for internal links
+            contentDiv.style.opacity = '0';
 
-                        // Clear dynamic content if any external was loaded
-                        dynamicContentWrapper.innerHTML = '';
-                        // Re-append the original internal content sections to dynamicContentWrapper
-                        internalContentSections.forEach(section => {
-                            dynamicContentWrapper.appendChild(section);
-                        });
+            setTimeout(() => {
+                contentDiv.innerHTML = `<div class="content-wrapper">${htmlContent}</div>`;
+                contentDiv.style.opacity = '1';
+            }, 200);
 
-                        // Hide all internal content sections (after re-appending)
-                        internalContentSections.forEach(section => {
-                            section.classList.add('hidden');
-                        });
-
-                        // Show the target internal content section
-                        const targetSection = document.querySelector(targetHref);
-                        if (targetSection) {
-                            targetSection.classList.remove('hidden');
-                            // Scroll to the top of the main content area for better UX
-                            targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }
-
-                    }
-                    // If it's an external HTML file (e.g., appium.html, playwright.html)
-                    else if (targetHref.endsWith('.html')) {
-                        e.preventDefault(); // Prevent default browser navigation
-
-                        // Fetch the content of the linked HTML file
-                        fetch(targetHref)
-                            .then(response => response.text())
-                            .then(htmlString => {
-                                const parser = new DOMParser();
-                                const doc = parser.parseFromString(htmlString, 'text/html');
-
-                                // Find the main content container from the fetched HTML
-                                // Assuming main content is within a div with class 'container' in appium.html and playwright.html
-                                const loadedContent = doc.querySelector('.container');
-
-                                if (loadedContent) {
-                                    // Clear current content in dynamic-content-wrapper
-                                    dynamicContentWrapper.innerHTML = '';
-                                    // Append new content
-                                    dynamicContentWrapper.appendChild(loadedContent);
-
-                                    // Re-initialize scripts for the newly loaded content
-                                    initializeDynamicContentScripts();
-                                    // Scroll to the top of the main content area for better UX
-                                    dynamicContentWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error loading external content:', error);
-                                // Fallback to direct navigation if fetch fails (optional)
-                                window.location.href = targetHref;
-                            });
-                    }
-                });
+            // Update active menu
+            document.querySelectorAll('.menu-link').forEach(link => {
+                link.classList.remove('active');
             });
+            const activeLink = document.querySelector(`[data-content="${contentKey}"]`);
+            if (activeLink) activeLink.classList.add('active');
+        }
 
-            // Initial state: Show welcome-section by default and activate its link if applicable
-            const welcomeSection = document.getElementById('welcome-section');
-            if (welcomeSection) {
-                welcomeSection.classList.remove('hidden');
-                // No sidebar link is active by default for welcome section, as it's not explicitly linked from sidebar
-            }
+        function loadContentFromFile(fileName) {
+            const contentDiv = document.getElementById('content');
+            contentDiv.style.opacity = '0';
 
-            // Initialize scripts for the initial content (welcome section or any default internal topic)
-            initializeDynamicContentScripts();
+            setTimeout(() => {
+                contentDiv.innerHTML = `<div class="content-wrapper">
+                    <iframe src="${fileName}" style="width: 100%; height: calc(100vh - 160px); border: none; border-radius: 8px;"></iframe>
+                </div>`;
+                contentDiv.style.opacity = '1';
+            }, 200);
+        }
+
+        // Submenu toggle
+        const aiMenu = document.getElementById('ai-menu');
+        const aiSubmenu = document.getElementById('ai-submenu');
+        
+        if (aiMenu) {
+            aiMenu.addEventListener('click', function(e) {
+                e.preventDefault();
+                aiSubmenu.classList.toggle('open');
+                aiMenu.classList.toggle('open');
+            });
+        }
+
+        // Event listeners for menu links
+        document.querySelectorAll('.menu-link:not(.has-submenu)').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const contentKey = this.getAttribute('data-content');
+                const fileName = this.getAttribute('data-file');
+                
+                // Update active state
+                document.querySelectorAll('.menu-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // ถ้ามี data-file ให้โหลดจากไฟล์
+                if (fileName) {
+                    loadContentFromFile(fileName);
+                }
+                // ถ้ามี data-content ให้โหลดแบบ single-page
+                else if (contentKey) {
+                    loadContent(contentKey);
+                }
+            });
+        });
+
+        // Event listeners for submenu links
+        document.querySelectorAll('.submenu-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const contentKey = this.getAttribute('data-content');
+                loadContent(contentKey);
+                
+                // Update active state
+                document.querySelectorAll('.submenu-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Keep AI menu highlighted
+                document.querySelectorAll('.menu-link').forEach(l => l.classList.remove('active'));
+                if (aiMenu) aiMenu.classList.add('active');
+            });
+        });
+
+        // Load default content
+        window.addEventListener('DOMContentLoaded', () => {
+            loadContent('profile');
         });
     </script>
 </body>
